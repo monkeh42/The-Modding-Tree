@@ -17,6 +17,7 @@ addAltNode("mn", {
     symbol: "MN",
     row: 0,
     position: 0,
+    nodeStyle: "background-color: #0D58C4;",
     effect() {
         eff = new Decimal(2)
         if (hasUpgrade("n", 14)) {eff = eff.times(2)}
@@ -25,7 +26,7 @@ addAltNode("mn", {
     layerShown() { return true },
     canClick: function() { return (getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (!player[this.layer].bought) {
+        if (tmp[this.layer].canClick) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -57,6 +58,7 @@ addAltNode("pt", {
     branches: ["mn"],
     row: 1,
     position: 0,
+    nodeStyle: "background-color: #0D58C4;",
     effect() {
         eff = new Decimal(4)
         return eff
@@ -64,7 +66,7 @@ addAltNode("pt", {
     layerShown() { return true },
     canClick: function() { return (getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (!player[this.layer].bought) {
+        if (tmp[this.layer].canClick) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -120,6 +122,7 @@ addAltNode("wd", {
     branches: ["pt"],
     row: 2,
     position: 0,
+    nodeStyle: "background-color: #0D58C4;",
     
     effExp() {
         exp = new Decimal(2)
@@ -138,7 +141,7 @@ addAltNode("wd", {
     layerShown() { return true },
     canClick: function() { return (getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (!player[this.layer].bought) {
+        if (tmp[this.layer].canClick) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -171,6 +174,7 @@ addAltNode("pp", {
     branches: ["pt"],
     row: 2,
     position: 2,
+    nodeStyle: "background-color: #0D58C4;",
     effect() {
         eff = new Decimal(10)
         return eff
@@ -190,7 +194,7 @@ addAltNode("pp", {
     layerShown() { return true },
     canClick: function() { return (getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick: function() { 
-        if (!player[this.layer].bought) {
+        if (tmp[this.layer].canClick) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -222,6 +226,7 @@ addAltNode("fl", {
     branches: ["wd"],
     row: 3,
     position: 0,
+    nodeStyle: "background-color: #0D58C4;",
     effExp() {
         exp = new Decimal(8)
         return exp
@@ -234,7 +239,7 @@ addAltNode("fl", {
     layerShown() { return true },
     canClick: function() { return false },//(getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (!player[this.layer].bought) {
+        if (tmp[this.layer].canClick) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -281,6 +286,7 @@ addAltNode("pd", {
     branches: ["wd", "pp"],
     row: 3,
     position: 2,
+    nodeStyle: "background-color: #0D58C4;",
     effect() {
         eff = new Decimal(100)
         return eff
@@ -288,7 +294,7 @@ addAltNode("pd", {
     layerShown() { return true },
     canClick: function() { return false },//(getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (!player[this.layer].bought) {
+        if (tmp[this.layer].canClick) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -335,6 +341,7 @@ addAltNode("fc", {
     branches: ["pp"],
     row: 3,
     position: 4,
+    nodeStyle: "background-color: #0D58C4;",
     effect() {
         eff = tmp["n"].puisEffect
         return eff
@@ -342,7 +349,7 @@ addAltNode("fc", {
     layerShown() { return true },
     canClick: function() { return false }, //(getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (!player[this.layer].bought) {
+        if (tmp[this.layer].canClick) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
