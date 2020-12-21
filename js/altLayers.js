@@ -25,7 +25,7 @@ addAltNode("mn", {
     layerShown() { return true },
     canClick: function() { return (getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (this.canClick) {
+        if (!player[this.layer].bought) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -64,7 +64,7 @@ addAltNode("pt", {
     layerShown() { return true },
     canClick: function() { return (getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (this.canClick) {
+        if (!player[this.layer].bought) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -138,7 +138,7 @@ addAltNode("wd", {
     layerShown() { return true },
     canClick: function() { return (getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (this.canClick) {
+        if (!player[this.layer].bought) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -190,7 +190,7 @@ addAltNode("pp", {
     layerShown() { return true },
     canClick: function() { return (getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick: function() { 
-        if (this.canClick) {
+        if (!player[this.layer].bought) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -234,7 +234,7 @@ addAltNode("fl", {
     layerShown() { return true },
     canClick: function() { return false },//(getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (this.canClick) {
+        if (!player[this.layer].bought) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -288,7 +288,7 @@ addAltNode("pd", {
     layerShown() { return true },
     canClick: function() { return false },//(getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (this.canClick) {
+        if (!player[this.layer].bought) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
@@ -342,7 +342,7 @@ addAltNode("fc", {
     layerShown() { return true },
     canClick: function() { return false }, //(getExpPoints().gte(player[this.layer].cost) && !player[this.layer].bought && prereqsPurchased(this.layer) && this.researchCompleted()) },
     onClick() { 
-        if (this.canClick) {
+        if (!player[this.layer].bought) {
             player.p.spent = player.p.spent.plus(player[this.layer].cost)
             player[this.layer].bought = true
         }
