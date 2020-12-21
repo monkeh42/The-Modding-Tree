@@ -43,6 +43,7 @@ function setupTemp() {
 		tmp[layer].notify = {}
 		tmp[layer].prestigeNotify = {}
 		tmp[layer].prestigeButtonText = {}
+		tmp[layer].computedNodeStyle = []
 		setupBarStyles(layer)
 	}
 	temp = tmp
@@ -106,6 +107,7 @@ function updateTemp() {
 		tmp[layer].prestigeButtonText = prestigeButtonText(layer)
 		constructBarStyles(layer)
 		constructAchievementStyles(layer)
+		constructNodeStyle(layer)
 		updateChallengeDisplay(layer)
 
 	}
