@@ -927,7 +927,7 @@ addLayer("s", {
         cols: 3,
         11: {
             title: "Creeping Infestation",
-            cost(x=getBuyableAmount(this.layer, this.id)) { return new Decimal(5).times(player.s[11].costMult()).times(new Decimal(10).pow(x)) },
+            cost(x=getBuyableAmount(this.layer, this.id)) { return new Decimal(5).times(new Decimal(10).pow(x)).pow(player.s[11].costMult()) },
             display() { 
                 return ("Cost: " + formatWhole(this.cost()) + " mana \n\
                 Level: " + formatWhole(getBuyableAmount("s", 11)) + "\n\
@@ -959,7 +959,7 @@ addLayer("s", {
             title: "Eldritch Empowerment",
             cost(x=getBuyableAmount(this.layer, this.id)) { return new Decimal(25).times(player.s[12].costMult()).pow(new Decimal(2).pow(x.pow(0.75))) },
             display() { 
-                if (hasMilestone("n2", 1)) {
+                if (this.canAfford()) {
                     return ("Cost: " + formatWhole(this.cost()) + " mana \n\
                     Level: " + formatWhole(getBuyableAmount("s", 12)) + "\n\
                     Multiplies abomination effect by:\n\
@@ -995,7 +995,7 @@ addLayer("s", {
             title: "Forbidden Knowledge",
             cost(x=getBuyableAmount(this.layer, this.id)) { return new Decimal(100).times(player.s[13].costMult()).pow(new Decimal(2.5).pow(x.pow(0.85))) },
             display() { 
-                if (hasMilestone("n2", 2)) {
+                if (this.canAfford()) {
                     return ("Cost: " + formatWhole(this.cost()) + " mana \n\
                     Level: " + formatWhole(getBuyableAmount("s", 13)) + "\n\
                     Adds log(x+1)/2 to your research gain, where x is this spell's level.\n\
