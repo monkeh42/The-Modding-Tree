@@ -12,8 +12,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1.3",
-	name: "Putrid Prepubescent",
+	num: "0.2.2",
+	name: "Pyromaniac Pre-Teen",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -43,29 +43,38 @@ function getPointGen() {
 	let gain = new Decimal(1)
 	if (hasUpgrade("f", 11) || hasUpgrade("a", 11)) { gain = gain.plus(1) }
 
-	if (player.a.unlocked) gain = gain.plus(tmp.a.effect)
+	if (player.a.unlocked) gain = gain.times(tmp.a.effect)
 
-	gain = gain.times(tmp.z.effect) 
+	if (player.z.points.gt(0)) gain = gain.times(tmp.z.effect) 
 	if (hasUpgrade("z", 12)) { gain = gain.times(upgradeEffect("z", 12)) }
 	if (hasUpgrade("z", 21)) { gain = gain.times(upgradeEffect("z", 21)) }
 	if (hasUpgrade("z", 23)) { gain = gain.times(upgradeEffect("z", 23)) }
 	if (hasUpgrade("a", 14)) { gain = gain.times(upgradeEffect("a", 14)) }
+	if (hasUpgrade("a", 24)) { gain = gain.times(upgradeEffect("a", 24)) }
+	if (hasUpgrade("f", 24)) { gain = gain.times(upgradeEffect("f", 24)) }
+	if (player.wd.bought) { gain = gain.times(tmp["wd"].effect) }
+	if (player.n[11].gt(0)) { gain = gain.times(tmp["n"].pestEffect) }
+	if (getBuyableAmount("s", 11)) { gain = gain.times(buyableEffect("s", 11)) }
+	if (player.fl.bought) { gain = gain.times(tmp["fl"].effect) }
 
 	return gain
 }
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
 function addedPlayerData() { return {
+	pastMilestones: {},
+	devSpeed: 1,
+	bestPoints: new Decimal(0),
 }}
 
 // Display extra things at the top of the page
 var displayThings = [
-	"Endgame: 2 ascensions"
+	"Current endgame: 15 total exterminated planets"
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.p.resets.gte(new Decimal(2))
+	return player.p.total.gte(new Decimal(15))
 }
 
 
