@@ -657,7 +657,7 @@ addLayer("p", {
     }},
     branches: ["a", "f"],
     resetDescription: "Exterminate this world for ",
-    position: 3,
+    position: 2,
     color: "#0D58C4",                       // The color for this layer, which affects many elements.
     resource: "exterminated planets",            // The name of this layer's main prestige resource.
     row: 2,                                 // The row this layer is on (0 is the first row).
@@ -1097,12 +1097,12 @@ addLayer("g2", {
     layerShown() { return "ghost" }            // Returns a bool for if this layer's node should be visible in the tree.
 })
 
-addLayer("g6", {
+addLayer("g3", {
     startData() { return {                  // startData is a function that returns default data for a layer. 
         unlocked: false,                     // You can add more variables here to add them to your layer.
         points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
     }},
-    position: 2,
+    position: 3,
     color: "#4BDC13",                       // The color for this layer, which affects many elements.
     resource: "prestige points",            // The name of this layer's main prestige resource.
     row: 2,                                 // The row this layer is on (0 is the first row).
@@ -1114,27 +1114,12 @@ addLayer("g6", {
     layerShown() { return "ghost" }            // Returns a bool for if this layer's node should be visible in the tree.
 })
 
-addLayer("g7", {
-    startData() { return {                  // startData is a function that returns default data for a layer. 
-        unlocked: false,                     // You can add more variables here to add them to your layer.
-        points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
-    }},
-    position: 5,
-    color: "#4BDC13",                       // The color for this layer, which affects many elements.
-    resource: "prestige points",            // The name of this layer's main prestige resource.
-    row: 2,                                 // The row this layer is on (0 is the first row).
-    baseResource: "points",                 // The name of the resource your prestige gain is based on.
-    baseAmount() { return player.points },  // A function to return the current amount of baseResource.
-    requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency. Also the amount required to unlock the layer.
-    type: "normal",                         // Determines the formula used for calculating prestige currency.
-    exponent: 0.5,
-    layerShown() { return "ghost" }            // Returns a bool for if this layer's node should be visible in the tree.
-})
+
 
 addLayer("n", {
     name: "necropoli", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "N", // This appears on the layer's node. Default is the id with the first letter capitalized
-    position: 6, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
+    position: 4, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: false,
         points: new Decimal(0),
@@ -1518,22 +1503,7 @@ addLayer("n2", {
     },
 })
 
-addLayer("g3", {
-    startData() { return {                  // startData is a function that returns default data for a layer. 
-        unlocked: false,                     // You can add more variables here to add them to your layer.
-        points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
-    }},
-    position: 4,
-    color: "#4BDC13",                       // The color for this layer, which affects many elements.
-    resource: "prestige points",            // The name of this layer's main prestige resource.
-    row: 2,                                 // The row this layer is on (0 is the first row).
-    baseResource: "points",                 // The name of the resource your prestige gain is based on.
-    baseAmount() { return player.points },  // A function to return the current amount of baseResource.
-    requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency. Also the amount required to unlock the layer.
-    type: "normal",                         // Determines the formula used for calculating prestige currency.
-    exponent: 0.5,
-    layerShown() { return "ghost" }            // Returns a bool for if this layer's node should be visible in the tree.
-})
+
 
 addLayer("as", {
     name: "ascensions", // This is optional, only used in a few places, If absent it just uses the layer id.
