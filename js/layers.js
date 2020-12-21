@@ -229,7 +229,7 @@ addLayer("a", {
         return exp
     },
     effect() {
-        eff = Decimal.pow(this.effectBase(), this.effectExp()).div(2).max(1)
+        eff = Decimal.pow(this.effectBase(), this.effectExp()).plus(1)
         if (hasMilestone("f", 1)) eff = eff.times(tmp.f.powerEff.pow(0.5))
         if (hasMilestone("a", 3)) eff = eff.pow(2)
         if (getBuyableAmount("s", 12).gt(0)) eff = eff.times(buyableEffect("s", 12))
@@ -400,23 +400,6 @@ addLayer("a", {
             effectDescription: "Square the abomination effect",
         },
     },
-})
-
-addLayer("g5", {
-    startData() { return {                  // startData is a function that returns default data for a layer. 
-        unlocked: false,                     // You can add more variables here to add them to your layer.
-        points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
-    }},
-    position: 1,
-    color: "#4BDC13",                       // The color for this layer, which affects many elements.
-    resource: "prestige points",            // The name of this layer's main prestige resource.
-    row: 1,                                 // The row this layer is on (0 is the first row).
-    baseResource: "points",                 // The name of the resource your prestige gain is based on.
-    baseAmount() { return player.points },  // A function to return the current amount of baseResource.
-    requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency. Also the amount required to unlock the layer.
-    type: "normal",                         // Determines the formula used for calculating prestige currency.
-    exponent: 0.5,
-    layerShown() { return "ghost" }            // Returns a bool for if this layer's node should be visible in the tree.
 })
 
 addLayer("f", {
@@ -867,7 +850,7 @@ addLayer("s", {
         return base
     },
     effect() {
-        eff = Decimal.pow(this.effBase(), player.s.points).minus(1).pow(new Decimal(1).minus(player.s.points.div(5000).min(1).times(0.85)))
+        eff = Decimal.pow(this.effBase(), player.s.points).minus(1).pow(new Decimal(1).minus(player.s.points.div(5000).min(0.6).times(0.85)))
         if (hasUpgrade("s", 11)) { eff = eff.times(upgradeEffect("s", 11)) }
        //eff = softcap("mGain", eff)
         return eff
@@ -1079,42 +1062,6 @@ addLayer("s", {
         },*/
     }
 })
-
-addLayer("g2", {
-    startData() { return {                  // startData is a function that returns default data for a layer. 
-        unlocked: false,                     // You can add more variables here to add them to your layer.
-        points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
-    }},
-    position: 1,
-    color: "#4BDC13",                       // The color for this layer, which affects many elements.
-    resource: "prestige points",            // The name of this layer's main prestige resource.
-    row: 2,                                 // The row this layer is on (0 is the first row).
-    baseResource: "points",                 // The name of the resource your prestige gain is based on.
-    baseAmount() { return player.points },  // A function to return the current amount of baseResource.
-    requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency. Also the amount required to unlock the layer.
-    type: "normal",                         // Determines the formula used for calculating prestige currency.
-    exponent: 0.5,
-    layerShown() { return "ghost" }            // Returns a bool for if this layer's node should be visible in the tree.
-})
-
-addLayer("g3", {
-    startData() { return {                  // startData is a function that returns default data for a layer. 
-        unlocked: false,                     // You can add more variables here to add them to your layer.
-        points: new Decimal(0),             // "points" is the internal name for the main resource of the layer.
-    }},
-    position: 3,
-    color: "#4BDC13",                       // The color for this layer, which affects many elements.
-    resource: "prestige points",            // The name of this layer's main prestige resource.
-    row: 2,                                 // The row this layer is on (0 is the first row).
-    baseResource: "points",                 // The name of the resource your prestige gain is based on.
-    baseAmount() { return player.points },  // A function to return the current amount of baseResource.
-    requires: new Decimal(10),              // The amount of the base needed to  gain 1 of the prestige currency. Also the amount required to unlock the layer.
-    type: "normal",                         // Determines the formula used for calculating prestige currency.
-    exponent: 0.5,
-    layerShown() { return "ghost" }            // Returns a bool for if this layer's node should be visible in the tree.
-})
-
-
 
 addLayer("n", {
     name: "necropoli", // This is optional, only used in a few places, If absent it just uses the layer id.
